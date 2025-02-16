@@ -9,25 +9,21 @@ import TaskCard from './components/TaskCard.jsx';
 import CustomNavbar from './components/Navbar.jsx';
 
 
-function App() {
-  
-
+function MainApp() {
     return (
      
       <Router>
-        <CustomNavbar/>
-        <TaskCard/>
+        
           <Routes>
             <Route path="/" element={<LoginCard></LoginCard>}></Route>
             <Route path="/home" element={<HomePage />}></Route>
             <Route path="/signup" element={<SignupPage />}></Route>
           </Routes>
-
+          <CustomNavbar/>
+          <TaskCard/>
         </Router>
       
     );
   }
-  
-  
 
-export default App
+export default MainApp
