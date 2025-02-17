@@ -1,6 +1,6 @@
 // src/components/TaskCard.jsx
 import  "react";
-import { propTypes } from "react-bootstrap/esm/Image";
+import { propTypes } from "prop-types";
 import { Card, Button } from "react-bootstrap";
 const TaskCard = ({ task }) => {
   return (

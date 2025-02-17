@@ -1,5 +1,5 @@
 
-import './App.css'
+
 import HomePage from './frontend/HomePage';
 import LoginCard from './frontend/LoginCard';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
