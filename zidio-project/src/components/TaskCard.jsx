@@ -1,6 +1,6 @@
 // src/components/TaskCard.jsx
-import  "react";
-import { propTypes } from "prop-types";
+import "react"; 
+import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 const TaskCard = ({ task }) => {
   return (
@@ -19,10 +19,17 @@ const TaskCard = ({ task }) => {
 
 // Define prop types for validation
 TaskCard.propTypes = {
-    task: propTypes.shape({
-      title: propTypes.string.isRequired,
-      description: propTypes.string.isRequired,
-      status: propTypes.string.isRequired,
+    task: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
     }).isRequired,
   };
+  TaskCard.defaultProps = {
+    someObject: {
+        title: "task name",
+        description: "task description",
+        status:"task status"
+    }
+};
 export default TaskCard;
