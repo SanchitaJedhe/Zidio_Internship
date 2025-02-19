@@ -1,8 +1,8 @@
 // src/pages/HomePage.jsx
 import  "react";
 import CustomNavbar from "../components/Navbar";
-import TaskCard from "../components/TaskCard";
 import { Container, Row, Col } from "react-bootstrap";
+import TaskPage from "../components/TaskPage";
 
 const HomePage = () => {
   const tasks = [
@@ -19,7 +19,7 @@ const HomePage = () => {
         <Row>
           {tasks.map((task) => (
             <Col key={task.id} sm={12} md={6} lg={4}>
-              <TaskCard task={task} />
+              <TaskPage task={task} />
             </Col>
           ))}
         </Row>
