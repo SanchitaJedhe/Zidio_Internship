@@ -18,7 +18,7 @@ const SignupPage = () => {
         text: "Please fill in all fields.",
         icon: "error",
         confirmButtonText: "OK",
-      });
+      }); 
       return;
     }
     console.log("Signing up with:", username, email, password);

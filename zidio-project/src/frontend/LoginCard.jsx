@@ -2,6 +2,7 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
+import loginBg from  "../assets/images/loginBg.avif";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -14,8 +15,15 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100">
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-6 d-none d-md-block p-0">
+          <img src={loginBg} alt="login Illustration" className="img-fluid w-100 h-100" style={{ objectFit: "cover" }} />
+        </div>
+     <br></br>
+    <Container className="d-flex justify-content align-items-center vh-100">
+
       <Card style={{ width: "400px", padding: "20px" }}>
+        
         <h2 className="text-center">Login</h2>
         <Form>
           <Form.Group className="mb-3">
@@ -45,7 +53,9 @@ const LoginPage = () => {
         </Form>
       </Card>
     </Container>
-  );
+    
+    
+   </div>);
 };
 
 export default LoginPage;
