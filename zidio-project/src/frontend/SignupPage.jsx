@@ -51,12 +51,13 @@ const handleGoogleSignUp = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
-    alert(`Signed in as ${user.displayName}`);
-    localStorage.setItem("username", user.displayName);
+    alert(`Signed in as ${user.userame}`);
+    localStorage.setItem("username", user.userame);
     localStorage.setItem("email", user.email);
-    navigate("/dashboard");
+    navigate("/home");
   } catch (error) {
     console.error("Google Sign-In Error:", error);
+    alert("Google Sign-In Failed. Try again!");
   }
 };
 
@@ -91,6 +92,12 @@ const handleGoogleSignUp = async () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <Button variant="primary" onClick={handleSignup} className="w-100">
+            Sign Up
+          </Button>
+            <br></br>
+            <h4 className="text-center">or</h4>
+            
             <button className="btn btn-danger w-100" onClick={handleGoogleSignUp}>
         <img
           src="https://img.icons8.com/color/16/000000/google-logo.png"
@@ -100,9 +107,7 @@ const handleGoogleSignUp = async () => {
         Sign Up with Google
       </button>
           </Form.Group>
-          <Button variant="primary" onClick={handleSignup} className="w-100">
-            Sign Up
-          </Button>
+          
         </Form>
       </Card>
     </Container>
