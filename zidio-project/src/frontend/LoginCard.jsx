@@ -2,16 +2,24 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
-import loginBg from  "../assets/images/loginBg.avif";
+import loginBg from "../assets/images/loginBg.avif";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [lusername, setUsername] = useState("");
+  const [lpassword, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("Logging in with:", username, password);
-    navigate("/home");
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+    if (lusername === storedUsername && lpassword === storedPassword) {
+      alert("Login Successful!");
+      navigate("/home"); // Navigate to a protected page (if needed)
+    } else {
+      setErrorMessage("Incorrect username or password!");
+    }
+  
   };
 
   return (
@@ -31,7 +39,7 @@ const LoginPage = () => {
             <Form.Control
               type="text"
               placeholder="Enter username"
-              value={username}
+              value={lusername}
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
@@ -40,7 +48,7 @@ const LoginPage = () => {
             <Form.Control
               type="password"
               placeholder="Enter password"
-              value={password}
+              value={lpassword}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
@@ -50,6 +58,8 @@ const LoginPage = () => {
           <p className="text-center mt-3">
             Don&apos;t have an account? <a href="/signup">Sign Up</a>
           </p>
+          {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
+
         </Form>
       </Card>
     </Container>

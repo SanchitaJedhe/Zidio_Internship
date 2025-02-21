@@ -3,6 +3,8 @@ import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../firebase.js";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +13,7 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   const handleSignup = () => {
+    
     if (!username || !email || !password) {
       // Show error alert if fields are empty
       Swal.fire({
@@ -23,6 +26,10 @@ const SignupPage = () => {
     }
     console.log("Signing up with:", username, email, password);
   // Show success alert before navigating
+  if(username && password && email){
+    localStorage.setItem("username", username); 
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
   Swal.fire({
     title: "Signup Successful!",
     text: `Welcome, ${username}! Redirecting to home...`,
@@ -30,13 +37,27 @@ const SignupPage = () => {
     timer: 2000, // Auto close after 2 seconds
     showConfirmButton: false,
   }).then(() => {
-    navigate("/home"); // Redirect after alert closes
+    navigate("/"); // Redirect after alert closes
   });
+}
 
   // Clear form fields after signup
   setUsername("");
   setEmail("");
   setPassword("");
+};
+// 🔹 Google Sign-Up
+const handleGoogleSignUp = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    alert(`Signed in as ${user.displayName}`);
+    localStorage.setItem("username", user.displayName);
+    localStorage.setItem("email", user.email);
+    navigate("/dashboard");
+  } catch (error) {
+    console.error("Google Sign-In Error:", error);
+  }
 };
 
   return (
@@ -70,6 +91,14 @@ const SignupPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button className="btn btn-danger w-100" onClick={handleGoogleSignUp}>
+        <img
+          src="https://img.icons8.com/color/16/000000/google-logo.png"
+          alt="Google Icon"
+          className="me-2"
+        />
+        Sign Up with Google
+      </button>
           </Form.Group>
           <Button variant="primary" onClick={handleSignup} className="w-100">
             Sign Up
