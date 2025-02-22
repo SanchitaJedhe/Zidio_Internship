@@ -5,6 +5,7 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase.js";
+import bgS from "../assets/images/bgS.avif";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -62,6 +63,9 @@ const handleGoogleSignUp = async () => {
 };
 
   return (
+    <div>
+      <img src={bgS} alt="login Illustration" className="img-fluid w-100 h-100" style={{ objectFit: "cover" }} />
+      
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <Card style={{ width: "400px", padding: "20px" }}>
         <h2 className="text-center">Sign Up</h2>
@@ -111,6 +115,7 @@ const handleGoogleSignUp = async () => {
         </Form>
       </Card>
     </Container>
+    </div>
   );
 };
 
