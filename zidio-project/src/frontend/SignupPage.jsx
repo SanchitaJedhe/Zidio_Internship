@@ -5,13 +5,13 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase.js";
-import bgS from "../assets/images/bgS.avif";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const backS = `${import.meta.env.BASE_URL}src/assets/images/backS.jpg`;
 
   const handleSignup = () => {
     
@@ -64,10 +64,12 @@ const handleGoogleSignUp = async () => {
 
   return (
     <div>
-      <img src={bgS} alt="login Illustration" className="img-fluid w-100 h-100" style={{ objectFit: "cover" }} />
       
-    <Container className="d-flex justify-content-center align-items-center vh-100">
-      <Card style={{ width: "400px", padding: "20px" }}>
+    <Container className="d-flex justify-content-center align-items-center vh-150">
+    <img src={backS} alt="Background" className="w-100 h-80 position-absolute top-20 start-0" style={{ objectFit: "cover", zIndex: "-1" }} />
+<br></br>
+      <Card style={{ width: "600px", height:"600px",marginTop:"160px", padding: "40px" }}>
+        <br></br>
         <h2 className="text-center">Sign Up</h2>
         <Form>
           <Form.Group className="mb-3">
@@ -88,6 +90,7 @@ const handleGoogleSignUp = async () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
+          <br></br>
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -96,6 +99,7 @@ const handleGoogleSignUp = async () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <br></br>
             <Button variant="primary" onClick={handleSignup} className="w-100">
             Sign Up
           </Button>
